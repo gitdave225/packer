@@ -1,0 +1,68 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "guest_os_type": "RedHat_64",
+            "iso_url": "{{user `ISOURL`}}",
+            "iso_checksum": "{{user `ISOCHKSUM`}}",
+            "iso_checksum_type": "{{user `ISOCHKSUMTYPE`}}",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+            ],
+            "boot_wait": "10s",
+            "disk_size": "{{user `disksize`}}",
+            "format": "ova",
+            "headless": "{{user `headless`}}",
+            "http_directory": "http",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "2h",
+            "shutdown_command": "echo 'my-centos-packer' | sudo -S shutdown -P now",
+            "virtualbox_version_file": ".vbox_version",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "1024"],
+                ["modifyvm", "{{.Name}}", "--cpus", "2"]
+            ],
+            "vm_name": "{{user `myname`}}"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo rm -rf /tmp/*",
+                "sudo rm -f /var/log/wtmp /var/log/btmp",
+                "sudo rm -rf /var/cache/* /usr/share/doc/*",
+                "rm -f .bash_history",
+                "history -c"
+            ]
+        }
+    ],
+    "post-processors": [{
+        "type": "amazon-import",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `myregion`}}",
+        "s3_bucket_name": "{{user `mys3`}}",
+        "s3_key_name": "{{user `myname`}}",
+        "license_type": "BYOL",
+        "ami_description": "CENTOS7-x64 {{timestamp}}",
+        "ami_name": "mydcaws-centos7-x64",
+        "tags": {
+            "Name": "Packer Built CENTOS7-x64",
+            "Description": "mydcaws CENTOS7-x64 packer amazon-import {{timestamp}}"
+        }
+    }],
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "myregion": "us-east-1",
+        "mys3": "mydcaws-s3-dump",
+        "ISOURL": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-Everything-1708.iso",
+        "ISOCHKSUM": "8593f5a1631ebfb7581193a7b4ef96d44f500d3ceb49cc4cfbfd71d5698e4173",
+        "ISOCHKSUMTYPE": "sha256",
+        "disksize": "20480",
+        "headless": "false",
+        "myname": "CENTOS7-X64"
+    }
+}

@@ -1,0 +1,281 @@
+Last login: Thu Dec 21 23:13:18 on ttys001
+mackyzacky@Mackys-MBP ~/repos/packer $ ls
+example.json
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instances
+{
+    "Reservations": [
+        {
+            "Groups": [],
+            "Instances": [
+                {
+                    "AmiLaunchIndex": 0,
+                    "ImageId": "ami-3a196240",
+                    "InstanceId": "i-0558df35db1e3c1ba",
+                    "InstanceType": "t2.micro",
+                    "KeyName": "packer_5a3c8643-6ddc-a2e8-f25d-54cb00338230",
+                    "LaunchTime": "2017-12-22T04:13:00.000Z",
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1b",
+                        "GroupName": "",
+                        "Tenancy": "default"
+                    },
+                    "PrivateDnsName": "",
+                    "ProductCodes": [],
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 48,
+                        "Name": "terminated"
+                    },
+                    "StateTransitionReason": "User initiated (2017-12-22 04:19:13 GMT)",
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [],
+                    "ClientToken": "",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "NetworkInterfaces": [],
+                    "RootDeviceName": "/dev/sda1",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [],
+                    "StateReason": {
+                        "Code": "Client.UserInitiatedShutdown",
+                        "Message": "Client.UserInitiatedShutdown: User initiated shutdown"
+                    },
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "Packer Builder"
+                        }
+                    ],
+                    "VirtualizationType": "hvm"
+                }
+            ],
+            "OwnerId": "326081864872",
+            "ReservationId": "r-0ee8fe5483b970e75"
+        },
+        {
+            "Groups": [],
+            "Instances": [
+                {
+                    "AmiLaunchIndex": 0,
+                    "ImageId": "ami-3dec9947",
+                    "InstanceId": "i-0a3cbf12e0a545138",
+                    "InstanceType": "t2.micro",
+                    "KeyName": "packer_5a3c88ea-62c6-868c-8348-7e43dddb436a",
+                    "LaunchTime": "2017-12-22T04:24:20.000Z",
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1b",
+                        "GroupName": "",
+                        "Tenancy": "default"
+                    },
+                    "PrivateDnsName": "",
+                    "ProductCodes": [],
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 48,
+                        "Name": "terminated"
+                    },
+                    "StateTransitionReason": "User initiated (2017-12-22 04:25:20 GMT)",
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [],
+                    "ClientToken": "",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "NetworkInterfaces": [],
+                    "RootDeviceName": "/dev/sda1",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [],
+                    "StateReason": {
+                        "Code": "Client.UserInitiatedShutdown",
+                        "Message": "Client.UserInitiatedShutdown: User initiated shutdown"
+                    },
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "Packer Builder"
+                        }
+                    ],
+                    "VirtualizationType": "hvm"
+                }
+            ],
+            "OwnerId": "326081864872",
+            "ReservationId": "r-0565061dd0eecb741"
+        },
+        {
+            "Groups": [],
+            "Instances": [
+                {
+                    "AmiLaunchIndex": 0,
+                    "ImageId": "ami-3dec9947",
+                    "InstanceId": "i-02888f5b9dd9d0154",
+                    "InstanceType": "t2.micro",
+                    "KeyName": "packer_5a3c8953-8519-7811-31e7-790fca0762ca",
+                    "LaunchTime": "2017-12-22T04:26:05.000Z",
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "Placement": {
+                        "AvailabilityZone": "us-east-1b",
+                        "GroupName": "",
+                        "Tenancy": "default"
+                    },
+                    "PrivateDnsName": "ip-172-31-67-186.ec2.internal",
+                    "PrivateIpAddress": "172.31.67.186",
+                    "ProductCodes": [],
+                    "PublicDnsName": "ec2-174-129-62-199.compute-1.amazonaws.com",
+                    "PublicIpAddress": "174.129.62.199",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "StateTransitionReason": "",
+                    "SubnetId": "subnet-3f14ad13",
+                    "VpcId": "vpc-5b74cc22",
+                    "Architecture": "x86_64",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1",
+                            "Ebs": {
+                                "AttachTime": "2017-12-22T04:26:06.000Z",
+                                "DeleteOnTermination": true,
+                                "Status": "attached",
+                                "VolumeId": "vol-0b16a97b9b7fe554f"
+                            }
+                        }
+                    ],
+                    "ClientToken": "",
+                    "EbsOptimized": false,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "NetworkInterfaces": [
+                        {
+                            "Association": {
+                                "IpOwnerId": "amazon",
+                                "PublicDnsName": "ec2-174-129-62-199.compute-1.amazonaws.com",
+                                "PublicIp": "174.129.62.199"
+                            },
+                            "Attachment": {
+                                "AttachTime": "2017-12-22T04:26:05.000Z",
+                                "AttachmentId": "eni-attach-6ea081a5",
+                                "DeleteOnTermination": true,
+                                "DeviceIndex": 0,
+                                "Status": "attached"
+                            },
+                            "Description": "",
+                            "Groups": [
+                                {
+                                    "GroupName": "packer_5a3c895c-124b-b823-a570-5cf8daf98e96",
+                                    "GroupId": "sg-208f9155"
+                                }
+                            ],
+                            "Ipv6Addresses": [],
+                            "MacAddress": "12:30:7f:10:74:f8",
+                            "NetworkInterfaceId": "eni-5f25b0d1",
+                            "OwnerId": "326081864872",
+                            "PrivateDnsName": "ip-172-31-67-186.ec2.internal",
+                            "PrivateIpAddress": "172.31.67.186",
+                            "PrivateIpAddresses": [
+                                {
+                                    "Association": {
+                                        "IpOwnerId": "amazon",
+                                        "PublicDnsName": "ec2-174-129-62-199.compute-1.amazonaws.com",
+                                        "PublicIp": "174.129.62.199"
+                                    },
+                                    "Primary": true,
+                                    "PrivateDnsName": "ip-172-31-67-186.ec2.internal",
+                                    "PrivateIpAddress": "172.31.67.186"
+                                }
+                            ],
+                            "SourceDestCheck": true,
+                            "Status": "in-use",
+                            "SubnetId": "subnet-3f14ad13",
+                            "VpcId": "vpc-5b74cc22"
+                        }
+                    ],
+                    "RootDeviceName": "/dev/sda1",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "packer_5a3c895c-124b-b823-a570-5cf8daf98e96",
+                            "GroupId": "sg-208f9155"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "Packer Builder"
+                        }
+                    ],
+                    "VirtualizationType": "hvm"
+                }
+            ],
+            "OwnerId": "326081864872",
+            "ReservationId": "r-0a2ac6538ab00ab52"
+        }
+    ]
+}
+mackyzacky@Mackys-MBP ~/repos/packer $ packer validate example.json 
+Template validated successfully.
+mackyzacky@Mackys-MBP ~/repos/packer $ packer build example.json 
+amazon-ebs output will be in this color.
+
+==> amazon-ebs: Prevalidating AMI Name: my-packer-example 1513916961
+    amazon-ebs: Found Image ID: ami-3dec9947
+==> amazon-ebs: Creating temporary keypair: packer_5a3c8a21-15ea-ee54-1371-587e19b3f738
+==> amazon-ebs: Creating temporary security group for this instance: packer_5a3c8a3c-4936-e86a-fa06-7f528bc01fe7
+==> amazon-ebs: Authorizing access to port 22 from 0.0.0.0/0 in the temporary security group...
+==> amazon-ebs: Launching a source AWS instance...
+==> amazon-ebs: Adding tags to source instance
+    amazon-ebs: Adding tag: "Name": "Packer Builder"
+    amazon-ebs: Instance ID: i-0e0b019ea9e8d29bb
+==> amazon-ebs: Waiting for instance (i-0e0b019ea9e8d29bb) to become ready...
+==> amazon-ebs: Waiting for SSH to become available...
+==> amazon-ebs: Connected to SSH!
+==> amazon-ebs: Stopping the source instance...
+    amazon-ebs: Stopping instance, attempt 1
+==> amazon-ebs: Waiting for the instance to stop...
+==> amazon-ebs: Creating the AMI: my-packer-example 1513916961
+    amazon-ebs: AMI: ami-a36d17d9
+==> amazon-ebs: Waiting for AMI to become ready...
+==> amazon-ebs: Terminating the source AWS instance...
+==> amazon-ebs: Cleaning up any extra volumes...
+==> amazon-ebs: No volumes to clean up, skipping
+==> amazon-ebs: Deleting temporary security group...
+==> amazon-ebs: Deleting temporary keypair...
+Build 'amazon-ebs' finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> amazon-ebs: AMIs were created:
+us-east-1: ami-a36d17d9
+
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 deregister-image --image-id ami-a36d17d9
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-snapshots --owner-ids self
+{
+    "Snapshots": [
+        {
+            "Description": "Created by CreateImage(i-0e0b019ea9e8d29bb) for ami-a36d17d9 from vol-0d994f6724b41b221",
+            "Encrypted": false,
+            "OwnerId": "326081864872",
+            "Progress": "100%",
+            "SnapshotId": "snap-072569319be84f432",
+            "StartTime": "2017-12-22T04:35:11.000Z",
+            "State": "completed",
+            "VolumeId": "vol-0d994f6724b41b221",
+            "VolumeSize": 8
+        }
+    ]
+}
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 delete-snapshot --snapshot-id snap-072569319be84f432
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-snapshots --owner-ids self
+{
+    "Snapshots": []
+}
+mackyzacky@Mackys-MBP ~/repos/packer $ 

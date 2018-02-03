@@ -1,0 +1,76 @@
+mackyzacky@turolap ~/repos/packer $ packer build winexample.json 
+amazon-ebs output will be in this color.
+
+==> amazon-ebs: Prevalidating AMI Name: mydc-packer-demo-1517111100
+    amazon-ebs: Found Image ID: ami-603b1c1a
+==> amazon-ebs: Creating temporary keypair: packer_5a6d473c-7eb9-f88d-cf67-081a92aaa0c8
+==> amazon-ebs: Creating temporary security group for this instance: packer_5a6d4756-4d73-4a4e-af43-164e454a30c2
+==> amazon-ebs: Authorizing access to port 5985 from 0.0.0.0/0 in the temporary security group...
+==> amazon-ebs: Launching a source AWS instance...
+==> amazon-ebs: Adding tags to source instance
+    amazon-ebs: Adding tag: "Name": "Packer Builder"
+    amazon-ebs: Instance ID: i-01e83248f210b50e8
+==> amazon-ebs: Waiting for instance (i-01e83248f210b50e8) to become ready...
+==> amazon-ebs: Skipping waiting for password since WinRM password set...
+==> amazon-ebs: Waiting for WinRM to become available...
+    amazon-ebs: WinRM connected.
+    amazon-ebs: #< CLIXML
+    amazon-ebs: <Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
+==> amazon-ebs: Connected to WinRM!
+==> amazon-ebs: Provisioning with Powershell...
+==> amazon-ebs: Provisioning with powershell script: /var/folders/hr/rbsl669d6pv70ynvtkyx4jpr0000gn/T/packer-powershell-provisioner919268270
+    amazon-ebs: HELLO NEW GUY; WELCOME TO PACKER
+==> amazon-ebs: Restarting Machine
+==> amazon-ebs: Waiting for machine to restart...
+    amazon-ebs: A system shutdown is in progress.(1115)
+    amazon-ebs: EC2AMAZ-N64C7IM restarted.
+    amazon-ebs: #< CLIXML
+    amazon-ebs: <Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
+==> amazon-ebs: Machine successfully restarted, moving on
+==> amazon-ebs: Provisioning with Powershell...
+==> amazon-ebs: Provisioning with powershell script: ./sample.ps1
+    amazon-ebs: PACKER_BUILD_NAME is automatically set for you, or you can set it in your builder variables; The default for this builder is: amazon-ebs
+    amazon-ebs: Use backticks as the escape character when required in powershell:
+    amazon-ebs: For example, VAR1 from our config is: A$DOLLAR
+    amazon-ebs: Likewise, VAR2 is: A`Backtick
+    amazon-ebs: Finally, VAR3 is: A'SingleQuote
+==> amazon-ebs: Stopping the source instance...
+    amazon-ebs: Stopping instance, attempt 1
+==> amazon-ebs: Waiting for the instance to stop...
+==> amazon-ebs: Creating the AMI: mydc-packer-demo-1517111100
+    amazon-ebs: AMI: ami-674d731d
+==> amazon-ebs: Waiting for AMI to become ready...
+==> amazon-ebs: Terminating the source AWS instance...
+==> amazon-ebs: Cleaning up any extra volumes...
+==> amazon-ebs: No volumes to clean up, skipping
+==> amazon-ebs: Deleting temporary security group...
+==> amazon-ebs: Deleting temporary keypair...
+Build 'amazon-ebs' finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> amazon-ebs: AMIs were created:
+us-east-1: ami-674d731d
+
+mackyzacky@turolap ~/repos/packer $ aws ec2 describe-snapshots --owner-ids self
+{
+    "Snapshots": [
+        {
+            "Description": "Created by CreateImage(i-01e83248f210b50e8) for ami-674d731d from vol-0eec717560b6db947",
+            "Encrypted": false,
+            "OwnerId": "326081864872",
+            "Progress": "100%",
+            "SnapshotId": "snap-08e1ef6417b339d3f",
+            "StartTime": "2018-01-28T03:52:01.000Z",
+            "State": "completed",
+            "VolumeId": "vol-0eec717560b6db947",
+            "VolumeSize": 30
+        }
+    ]
+}
+mackyzacky@turolap ~/repos/packer $ aws ec2 deregister-image --image-id ami-674d731d
+mackyzacky@turolap ~/repos/packer $ aws ec2 delete-snapshot --snapshot-id snap-08e1ef6417b339d3f
+mackyzacky@turolap ~/repos/packer $ aws ec2 describe-snapshots --owner-ids self
+{
+    "Snapshots": []
+}
+mackyzacky@turolap ~/repos/packer $

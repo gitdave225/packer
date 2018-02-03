@@ -1,0 +1,75 @@
+{
+    "variables": {
+      "aws_access_key": "",
+      "aws_secret_key": "",
+      "myregion": "us-east-1",
+      "mys3": "mydcaws-s3-dump",
+      "myovafile": "mydcaws-win2016.ova",
+      "myISO": "./WIN2016.ISO",
+      "myISOsha256": "1ce702a578a3cb1ac3d14873980838590f06d5b7101c5daaccbac9d73f1fb50f"
+    },
+    "builders": [{
+      "type": "virtualbox-iso",
+      "communicator": "winrm",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "1h",
+      "winrm_insecure": true,
+      "iso_url": "{{user `myISO`}}",
+      "iso_checksum_type": "sha256",
+      "iso_checksum": "{{user `myISOsha256`}}",
+      "disk_size": 100000,
+      "floppy_files": [
+          "Autounattend.xml",
+          "update-windows.ps1",
+          "configure-winrm.ps1"
+      ],
+      "format": "ova",
+      "guest_os_type": "Windows2016_64",
+      "hard_drive_interface": "scsi",
+      "headless": true,
+      "shutdown_command": "shutdown -s",
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "8192"],
+        ["modifyvm", "{{.Name}}", "--cpus", "2"],
+    	["modifyvm", "{{.Name}}", "--vram", "32"]
+      ],
+      "vm_name": "{{user `myovafile`}}"
+    }],
+    "provisioners": [
+      {
+          "type": "powershell",
+          "scripts": [
+            "enable-rdp.ps1",
+            "disable-hibernate.ps1",
+            "disable-autologin.ps1",
+            "enable-uac.ps1",
+            "no-expiration.ps1"
+          ]
+      },
+      {
+          "type": "windows-restart",
+          "restart_command": "powershell \"& {(Get-WmiObject win32_operatingsystem).LastBootUpTime > C:\\ProgramData\\lastboot.txt; Restart-Computer -force}\"",
+          "restart_check_command": "powershell -command \"& {if ((get-content C:\\ProgramData\\lastboot.txt) -eq (Get-WmiObject win32_operatingsystem).LastBootUpTime) {Write-Output 'Sleeping for 600 seconds to wait for reboot'; start-sleep 600} else {Write-Output 'Reboot complete'}}\""
+      },
+      {
+          "type": "shell-local",
+          "command": "aws s3 cp ./{{user `myovafile`}} s3://{{user `mys3`}}/{{user `myovafile`}}"
+      }
+    ],
+    "post-processors": [{
+        "type": "amazon-import",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `myregion`}}",
+        "s3_bucket_name": "{{user `mys3`}}",
+        "s3_key_name": "{{user `myovafile`}}",
+        "license_type": "BYOL",
+        "ami_description": "Windows 2016 Full Base Customized {{timestamp}}",
+        "ami_name": "mydcaws-Windows-2016_Full",
+        "tags": {
+            "Name": "Packer Built Windows 2016 Server Full",
+            "Description": "mydcaws packer amazon-import {{timestamp}}"
+        }
+    }]
+}

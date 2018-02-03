@@ -1,0 +1,103 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red242\green242\blue242;\red0\green0\blue0;\red47\green180\blue29;
+\red180\green36\blue25;}
+{\*\expandedcolortbl;;\csgray\c95825;\csgray\c0\c85000;\cssrgb\c20239\c73899\c14948;
+\cssrgb\c76410\c21699\c12524;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \CocoaLigature0 mackyzacky@turolap \cf4 ~/repos/packer\cf2  $ packer build centos.json \
+
+\f1\b \cf4 virtualbox-iso output will be in this color.
+\f0\b0 \cf2 \
+\
+
+\f1\b \cf4 ==> virtualbox-iso: Downloading or copying Guest additions
+\f0\b0 \cf2 \
+\cf4     virtualbox-iso: Downloading or copying: file:///Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso\cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Downloading or copying ISO
+\f0\b0 \cf2 \
+\cf4     virtualbox-iso: Found already downloaded, initial checksum matched, no download needed: http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-Everything-1708.iso\cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Starting HTTP server on port 8098
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Creating virtual machine...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Creating hard drive...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Creating forwarded port mapping for communicator (SSH, WinRM, etc) (host port 4252)
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Executing custom VBoxManage commands...
+\f0\b0 \cf2 \
+\cf4     virtualbox-iso: Executing: modifyvm CENTOS7-X64 --memory 1024\cf2 \
+\cf4     virtualbox-iso: Executing: modifyvm CENTOS7-X64 --cpus 2\cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Starting the virtual machine...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Waiting 10s for boot...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Typing the boot command...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Waiting for SSH to become available...
+\f0\b0 \cf2 \
+load: 2.98  cmd: packer 10219 running 0.03u 0.03s\
+load: 4.43  cmd: packer 10219 running 0.03u 0.03s\
+
+\f1\b \cf4 ==> virtualbox-iso: Connected to SSH!
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Uploading VirtualBox version info (5.2.6)
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Uploading VirtualBox guest additions ISO...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Provisioning with shell script: /var/folders/hr/rbsl669d6pv70ynvtkyx4jpr0000gn/T/packer-shell767521601
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Gracefully halting virtual machine...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Preparing to export machine...
+\f0\b0 \cf2 \
+\cf4     virtualbox-iso: Deleting forwarded port mapping for the communicator (SSH, WinRM, etc) (host port 4252)\cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Exporting virtual machine...
+\f0\b0 \cf2 \
+\cf4     virtualbox-iso: Executing: export CENTOS7-X64 --output output-virtualbox-iso/CENTOS7-X64.ova\cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Deregistering and deleting VM...
+\f0\b0 \cf2 \
+
+\f1\b \cf4 ==> virtualbox-iso: Running post-processor: amazon-import
+\f0\b0 \cf2 \
+\cf4     virtualbox-iso (amazon-import): Uploading output-virtualbox-iso/CENTOS7-X64.ova to s3://mydcaws-s3-dump/CENTOS7-X64\cf2 \
+\cf4     virtualbox-iso (amazon-import): Completed upload of output-virtualbox-iso/CENTOS7-X64.ova to s3://mydcaws-s3-dump/CENTOS7-X64\cf2 \
+\cf4     virtualbox-iso (amazon-import): Setting license type to 'BYOL'\cf2 \
+
+\f1\b \cf5 Build 'virtualbox-iso' errored: 1 error(s) occurred:
+\f0\b0 \cf2 \
+\
+
+\f1\b \cf5 * Post-processor failed: Failed to start import from s3://mydcaws-s3-dump/CENTOS7-X64: InvalidParameter: The service role <vmimport> does not exist or does not have sufficient permissions for the service to continue
+\f0\b0 \cf2 \
+
+\f1\b \cf5 	status code: 400, request id: e793cf1b-68a2-4542-96a1-5b35aae71eb3
+\f0\b0 \cf2 \
+\
+==> Some builds didn't complete successfully and had errors:\
+--> virtualbox-iso: 1 error(s) occurred:\
+\
+* Post-processor failed: Failed to start import from s3://mydcaws-s3-dump/CENTOS7-X64: InvalidParameter: The service role <vmimport> does not exist or does not have sufficient permissions for the service to continue\
+	status code: 400, request id: e793cf1b-68a2-4542-96a1-5b35aae71eb3\
+\
+==> Builds finished but no artifacts were created.}

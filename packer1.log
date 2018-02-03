@@ -1,0 +1,122 @@
+Last login: Thu Dec 21 23:25:50 on ttys001
+awsmackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instance-status
+{
+    "InstanceStatuses": [
+        {
+            "AvailabilityZone": "us-east-1b",
+            "InstanceId": "i-0e0b019ea9e8d29bb",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "InstanceStatus": {
+                "Details": [
+                    {
+                        "Name": "reachability",
+                        "Status": "initializing"
+                    }
+                ],
+                "Status": "initializing"
+            },
+            "SystemStatus": {
+                "Details": [
+                    {
+                        "Name": "reachability",
+                        "Status": "initializing"
+                    }
+                ],
+                "Status": "initializing"
+            }
+        }
+    ]
+}
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instance-status help
+mackyzacky@Mackys-MBP ~/repos/packer $ aws help
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instance-status --output=table
+-----------------------------------------------
+|           DescribeInstanceStatus            |
++---------------------------------------------+
+||             InstanceStatuses              ||
+|+-------------------+-----------------------+|
+|| AvailabilityZone  |      InstanceId       ||
+|+-------------------+-----------------------+|
+||  us-east-1b       |  i-0e0b019ea9e8d29bb  ||
+|+-------------------+-----------------------+|
+|||              InstanceState              |||
+||+----------------+------------------------+||
+|||      Code      |         Name           |||
+||+----------------+------------------------+||
+|||  16            |  running               |||
+||+----------------+------------------------+||
+|||             InstanceStatus              |||
+||+---------------+-------------------------+||
+|||  Status       |  initializing           |||
+||+---------------+-------------------------+||
+||||                Details                ||||
+|||+------------------+--------------------+|||
+||||       Name       |      Status        ||||
+|||+------------------+--------------------+|||
+||||  reachability    |  initializing      ||||
+|||+------------------+--------------------+|||
+|||              SystemStatus               |||
+||+---------------+-------------------------+||
+|||  Status       |  initializing           |||
+||+---------------+-------------------------+||
+||||                Details                ||||
+|||+------------------+--------------------+|||
+||||       Name       |      Status        ||||
+|||+------------------+--------------------+|||
+||||  reachability    |  initializing      ||||
+|||+------------------+--------------------+|||
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instance-status --output=text
+INSTANCESTATUSES	us-east-1b	i-0e0b019ea9e8d29bb
+INSTANCESTATE	16	running
+INSTANCESTATUS	initializing
+DETAILS	reachability	initializing
+SYSTEMSTATUS	initializing
+DETAILS	reachability	initializing
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instance-status --output=text
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-instance-status --output=text
+mackyzacky@Mackys-MBP ~/repos/packer $ aws ec2 describe-images --owners self
+{
+    "Images": [
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2017-12-22T04:35:10.000Z",
+            "ImageId": "ami-a36d17d9",
+            "ImageLocation": "326081864872/my-packer-example 1513916961",
+            "ImageType": "machine",
+            "Public": false,
+            "OwnerId": "326081864872",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "Encrypted": false,
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-072569319be84f432",
+                        "VolumeSize": 8,
+                        "VolumeType": "gp2"
+                    }
+                },
+                {
+                    "DeviceName": "/dev/sdb",
+                    "VirtualName": "ephemeral0"
+                },
+                {
+                    "DeviceName": "/dev/sdc",
+                    "VirtualName": "ephemeral1"
+                }
+            ],
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "my-packer-example 1513916961",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "SriovNetSupport": "simple",
+            "VirtualizationType": "hvm"
+        }
+    ]
+}
+mackyzacky@Mackys-MBP ~/repos/packer $ ami-a36d17d9
