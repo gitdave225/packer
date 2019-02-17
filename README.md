@@ -7,8 +7,9 @@ I utilized the following URLs as a basis for my tests:
 *[Matt Wrock](https://github.com/mwrock/packer-templates)
 *[Script to move IIS](https://gallery.technet.microsoft.com/scriptcenter/Script-to-move-the-IIS-f1fb62a5) 
 
-```
+
 To setup versioning on a packer image, perform the following. Follow this [link](https://stackoverflow.com/questions/38056018/how-do-i-set-the-version-of-vagrant-box-created-with-vmware-fusion-using-a-meta) for the reference.
+```
 $ certutil -hashfile windows2016min-virtualbox.box MD5
 MD5 hash of windows2016min-virtualbox.box:
 1774ea183f97654afb31d04527b24782
