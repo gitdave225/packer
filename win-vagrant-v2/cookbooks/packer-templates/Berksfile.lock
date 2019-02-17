@@ -1,0 +1,9 @@
+DEPENDENCIES
+  packer-templates
+    path: .
+    metadata: true
+
+GRAPH
+  packer-templates (0.1.0)
+    wsus-client (>= 0.0.0)
+  wsus-client (2.0.2)
