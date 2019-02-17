@@ -5,7 +5,6 @@ This repo contains my tests on setting up various images using packer.
 I utilized the following URLs as a basis for my tests:
 * [StefanScherer](https://github.com/StefanScherer/packer-windows)
 * [Matt Wrock](https://github.com/mwrock/packer-templates)
-* [Script to move IIS](https://gallery.technet.microsoft.com/scriptcenter/Script-to-move-the-IIS-f1fb62a5) 
 
 
 To setup versioning on a packer image, perform the following. Follow this [link](https://stackoverflow.com/questions/38056018/how-do-i-set-the-version-of-vagrant-box-created-with-vmware-fusion-using-a-meta) for the reference.
