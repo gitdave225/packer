@@ -5,7 +5,7 @@
       "myregion": "us-east-1",
       "mys3": "mydcaws-s3-dump",
       "myovafile": "mydcaws-win2016.ova",
-      "myISO": "./WIN2016.ISO",
+      "myISO": "packer_cache/WIN2016.ISO",
       "myISOsha256": "1ce702a578a3cb1ac3d14873980838590f06d5b7101c5daaccbac9d73f1fb50f"
     },
     "builders": [{
@@ -20,9 +20,9 @@
       "iso_checksum": "{{user `myISOsha256`}}",
       "disk_size": 100000,
       "floppy_files": [
-          "Autounattend.xml",
-          "update-windows.ps1",
-          "configure-winrm.ps1"
+          "answer_files/Autounattend.xml",
+          "scripts/update-windows.ps1",
+          "scripts/configure-winrm.ps1"
       ],
       "format": "ova",
       "guest_os_type": "Windows2016_64",
@@ -38,11 +38,11 @@
       {
           "type": "powershell",
           "scripts": [
-            "enable-rdp.ps1",
-            "disable-hibernate.ps1",
-            "disable-autologin.ps1",
-            "enable-uac.ps1",
-            "no-expiration.ps1"
+            "scripts/enable-rdp.ps1",
+            "scripts/disable-hibernate.ps1",
+            "scripts/disable-autologin.ps1",
+            "scripts/enable-uac.ps1",
+            "scripts/no-expiration.ps1"
           ]
       },
       {
