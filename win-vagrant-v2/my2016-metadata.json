@@ -1,0 +1,17 @@
+{
+  "name": "my/win2016",
+  "description": "Windows 2016 Evaluation",
+  "versions": [
+    {
+      "version": "0.2.0",
+      "providers": [
+        {
+          "name": "virtualbox",
+          "url": "file:///d:/repos/packer/win-vagrant-v2/windows2016min-virtualbox.box",
+          "checksum_type": "md5",
+          "checksum": "c5caca97fe72b93eca1a57cae5e5f016"
+        }
+      ]
+    }
+  ]
+}
