@@ -42,3 +42,18 @@ $ vagrant box add metadata.json --provider virtualbox
 ==> box: Successfully added box 'my/win2016' (v0.1.0) for 'virtualbox'!
 $
 ```
+
+After upgrading to vagrant 2.2.16, I am seeing this error for my personal win2016 vagrant box.
+```
+Processing D:\VMs\vagrant.d\boxes\my-VAGRANTSLASH-win2016
+==> default: Checking for updates to 'my/win2016'
+    default: Latest installed version: 0.2.0
+    default: Version constraints:
+    default: Provider: virtualbox
+There was an error while downloading the metadata for this box.
+The error message is shown below:
+
+URL using bad/illegal format or missing URL
+```
+
+Apparently this is a known issue as per ["URL using bad/illegal format or missing URL" with Vagrant 2.2.15](https://github.com/hashicorp/vagrant/issues/12320). I will need to update my Vagrant file to include a .vm.box_url entry.
